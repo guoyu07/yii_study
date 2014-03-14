@@ -35,11 +35,11 @@ CREATE TABLE `tbl_issue` (
   `update_user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 /*Data for the table `tbl_issue` */
 
-insert  into `tbl_issue`(`id`,`name`,`description`,`project_id`,`type_id`,`status_id`,`owner_id`,`requester_id`,`create_time`,`create_user_id`,`update_time`,`update_user_id`) values (1,'test issue 1','test issue 1 content',1,0,0,1,1,NULL,NULL,NULL,NULL);
+insert  into `tbl_issue`(`id`,`name`,`description`,`project_id`,`type_id`,`status_id`,`owner_id`,`requester_id`,`create_time`,`create_user_id`,`update_time`,`update_user_id`) values (1,'test issue 1','test issue 1 content',1,0,0,1,1,NULL,NULL,NULL,NULL),(2,'test issue 2','test issue 2 content',1,1,2,1,2,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `tbl_project` */
 
@@ -58,7 +58,7 @@ CREATE TABLE `tbl_project` (
 
 /*Data for the table `tbl_project` */
 
-insert  into `tbl_project`(`id`,`name`,`description`,`create_time`,`create_user_id`,`update_time`,`update_user_id`) values (1,'neal01','test 1','2013-12-18 08:00:00',1,'2013-12-18 08:00:00',1);
+insert  into `tbl_project`(`id`,`name`,`description`,`create_time`,`create_user_id`,`update_time`,`update_user_id`) values (1,'neal01','test project 001','2013-12-18 08:00:00',1,'2013-12-18 08:00:00',1);
 
 /*Table structure for table `tbl_project_user_assignment` */
 

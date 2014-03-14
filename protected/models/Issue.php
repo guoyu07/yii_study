@@ -131,8 +131,8 @@ class Issue extends CActiveRecord
 	public function getTypeOptions()
 	{
 		return array(
-			self::TYPE_BUG=>'Bug',  
-			self::TYPE_FEATURE=>'Feature', 
+			self::TYPE_BUG=>'Bug',
+			self::TYPE_FEATURE=>'Feature',
 			self::TYPE_TASK=>'Task',
 		);
 	}
@@ -145,4 +145,23 @@ class Issue extends CActiveRecord
 			self::Status_CLOSE=>'close',
 		);
 	}
+
+	/**
+	* @return string the status text display for the current issue
+	*/
+	public function getStatusText() 
+	{
+		$statusOptions = $this->statusOptions;
+		return isset($statusOptions[$this->status_id]) ? $statusOptions[$this->status_id] : "unknown status ({$this->status_id})";
+	}
+
+	/**
+	* @return string the type text display for the current issue
+	*/
+	public function getTypeText() 
+	{
+		$typeOptions = $this->typeOptions;
+		return isset($typeOptions[$this->type_id]) ? $typeOptions[$this->type_id] : "unknown type ({$this->type_id})";
+	}
+
 }
