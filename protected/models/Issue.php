@@ -123,6 +123,11 @@ class Issue extends CActiveRecord
 		$criteria->compare('update_time',$this->update_time,true);
 		$criteria->compare('update_user_id',$this->update_user_id);
 
+		$criteria->condition = 'project_id=:projectID';
+		$criteria->params = array(
+			':projectID' => $this->project_id
+			);
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

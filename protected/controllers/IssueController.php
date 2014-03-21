@@ -16,7 +16,7 @@ class IssueController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
-			'projectContext + create', //check to ensure valid project context
+			'projectContext + create index admin', //check to ensure valid project context
 		);
 	}
 
@@ -73,7 +73,7 @@ class IssueController extends Controller
 		{
 			$model->attributes=$_POST['Issue'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id,'pid'=>$model->project_id));
 		}
 
 		$this->render('create',array(
@@ -124,9 +124,19 @@ class IssueController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Issue');
+		$dataProvider=new CActiveDataProvider('Issue',array(
+			'criteria' => array(
+				'condition' => 'project_id=:projectId',
+				'params' => array(
+					':projectId' => $this->_project->id,
+					),
+				),
+			));
+		$model=new Issue('search');
+		$model->project_id = $this->_project->id;
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'model' => $model,
 		));
 	}
 
@@ -135,10 +145,12 @@ class IssueController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Issue('search');
+		$model=new Issue();
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Issue']))
 			$model->attributes=$_GET['Issue'];
+
+		$model->project_id = $this->_project->id;
 
 		$this->render('admin',array(
 			'model'=>$model,

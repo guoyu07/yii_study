@@ -1,6 +1,6 @@
 <?php
 return array (
   'template' => 'default',
-  'baseClass' => 'issue',
+  'baseClass' => 'Controller',
   'actions' => 'user',
 );
