@@ -87,4 +87,10 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'nealzhangwei@gmail.com',
 	),
+
+	//用户权限管理控件
+	// 'authManager'=>array(
+	// 	'class'=>'CDbAuthManager', 
+	// 	'connectionID'=>'db',
+	// ),
 );
